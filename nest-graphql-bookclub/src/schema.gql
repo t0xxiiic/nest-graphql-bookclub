@@ -1,0 +1,111 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type User {
+  id: String!
+  name: String!
+  email: String!
+  profilePic: String
+  reviews: [Review!]
+}
+
+type Review {
+  id: String!
+  book: Book!
+  user: User!
+  comment: String!
+}
+
+type Category {
+  id: String!
+  name: String!
+  books: [Book!]
+}
+
+type Book {
+  id: String!
+  name: String!
+  description: String
+  category: String
+  cover: String
+  reviews: [Review!]!
+  categories: [Category!]
+}
+
+type Query {
+  books(page: Int!, limit: Int!): [Book!]
+  book(id: String!): Book
+  categories: [Category!]!
+  category(id: String!): Category
+  users: [User!]!
+  user(id: String!): User
+  reviews: [Review!]!
+  review(id: String!): Review
+}
+
+type Mutation {
+  createBook(createBookInput: CreateBookInput!): Book!
+  updateBook(updateBookInput: UpdateBookInput!): Book!
+  removeBook(id: String!): String!
+  addBookCategory(categoryId: String!, bookId: String!): Book!
+  createCategory(createCategoryInput: CreateCategoryInput!): Category!
+  updateCategory(updateCategoryInput: UpdateCategoryInput!): Category
+  removeCategory(id: String!): String!
+  createUser(createUserInput: CreateUserInput!): User!
+  updateUser(updateUserInput: UpdateUserInput!): User!
+  removeUser(id: String!): String!
+  createReview(createReviewInput: CreateReviewInput!): Review!
+  updateReview(updateReviewInput: UpdateReviewInput!): Review!
+  removeReview(id: String!): String!
+}
+
+input CreateBookInput {
+  name: String!
+  description: String
+  cover: String
+  quantity: Float
+}
+
+input UpdateBookInput {
+  name: String
+  description: String
+  cover: String
+  quantity: Float
+  id: String!
+}
+
+input CreateCategoryInput {
+  name: String!
+}
+
+input UpdateCategoryInput {
+  name: String
+  id: String!
+}
+
+input CreateUserInput {
+  name: String!
+  email: String!
+  profilePic: String
+}
+
+input UpdateUserInput {
+  name: String
+  email: String
+  profilePic: String
+  id: String!
+}
+
+input CreateReviewInput {
+  bookId: String!
+  userId: String!
+  comment: String!
+}
+
+input UpdateReviewInput {
+  bookId: String
+  userId: String
+  comment: String
+  id: String!
+}
